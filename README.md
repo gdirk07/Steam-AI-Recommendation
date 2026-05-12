@@ -1,75 +1,72 @@
-# React + TypeScript + Vite
+# Steam AI Recommendation
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A conversational AI assitant that views your Steam game library through natural language.
+Ask what to play next, find pattersn in your playtime or dig up forgotten games you own.
 
-Currently, two official plugins are available:
+![screenshot](screenshot.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+- Loads your full Steam library with playtime data
+- Multi-turn conversation — ask follow-up questions naturally
+- Sorted Alphabetically with game icons
+- Powered by Google Gemini
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+## Tech Stack
 
-Note: This will impact Vite dev & build performances.
+- React + TypeScript (frontend)
+- Node.js + Express (backend)
+- Steam Web API
+- Google Gemini API
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Prerequisites
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Node.js 18+
+- A [Steam API key](https://steamcommunity.com/dev/apikey)
+- A [Gemini API key](https://aistudio.google.com)
+- Your Steam profile set to **Public**
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Installation
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+1. Clone the repo
+   git clone https://github.com/gdirk07/Steam-AI-Recommendation.git
+   cd steam-analyzer
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. Install dependencies
+   npm install
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+3. Set up environment variables
+   create a .env in the root directory
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+   Fill in your keys in .env
+  
+   STEAM_API_KEY 
+   VITE_GEMINI_API_KEY
+   (optional) VITE_STEAM_ID (you can input your steam id manually, but if this exist it will do it for you)
+
+  (optional) 
+
+4. Run the app
+   npm run dev
+
+   Opens at http://localhost:5173
+
+## Usage
+
+1. Enter your Steam ID (found in your profile URL)
+   (optional) you can instead create a variable in .env called VITE_STEAM_ID that contains it
+2. Click Load library
+3. Ask anything in the chat:
+   - "What should I play next?"
+   - "How many total hours have I played?"
+   - "What's my most neglected game?"
+   - "What genres do I play most?"
+
+## How It Works
+
+The backend fetches your Steam library via the Steam Web API and serves 
+it to the frontend. When you send a message, your full game library is 
+passed as context to Gemini alongside the conversation history, enabling 
+it to answer questions specific to your collection across multiple turns.

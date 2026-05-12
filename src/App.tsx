@@ -85,7 +85,7 @@ function App() {
 
   return (
     <div style={{ maxWidth: '1000px', margin: '0', padding: '20px' }}>
-      <h1>Steam Game Analyzer</h1>
+      <h1>Steam AI Recommendation</h1>
 
       {/* Steam ID input */}
       <div style={{ display: 'flex', gap: '8px', marginBottom: '20px' }}>      
