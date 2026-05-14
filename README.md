@@ -47,7 +47,7 @@ https://steam-ai-recommendation.vercel.app/
    Fill in your keys in .env
   
    STEAM_API_KEY   
-   VITE_GEMINI_API_KEY  
+   GEMINI_API_KEY  
    (optional) VITE_STEAM_ID (you can input your steam id manually, but if this exist it will do it for you)  
 
 4. Run the app
