@@ -21,6 +21,10 @@ Ask what to play next, find pattersn in your playtime or dig up forgotten games 
 
 ## Getting Started
 
+## Live Demo
+
+https://steam-ai-recommendation.vercel.app/
+
 ### Prerequisites
 
 - Node.js 18+
