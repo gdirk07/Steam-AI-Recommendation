@@ -8,7 +8,7 @@ const app = express()
 app.use(cors())
 
 app.get('/api/games/:steamId', async (req, res) => {
-  const { steamId } = req.params
+  const { steamId } = req.params;
   const response = await axios.get(
     `https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/`,
     { params: {
@@ -18,8 +18,9 @@ app.get('/api/games/:steamId', async (req, res) => {
       include_played_free_games: true,
       format: 'json',
     }}
-  )
+  );
   res.json(response.data)
-})
+});
 
-app.listen(3001, () => console.log('Server running on port 3001'))
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
